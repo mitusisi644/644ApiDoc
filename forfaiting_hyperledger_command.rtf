@@ -1,0 +1,29 @@
+composer archive create -t dir -n .
+
+composer network install --card PeerAdmin@hlfv1 --archiveFile forfaiting@0.0.1.bna
+
+composer network start --networkName forfaiting --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+
+composer card import --file networkadmin.card
+
+Update
+
+composer card delete --card admin@forfaiting
+
+composer archive create --sourceType dir --sourceName . -a forfaiting@0.0.4.bna
+
+composer network install --card PeerAdmin@hlfv1 --archiveFile forfaiting@0.0.4.bna
+
+composer network upgrade -c PeerAdmin@hlfv1 -n forfaiting -V 0.0.4
+
+composer network ping -c admin@tutorial-network | grep Business
+
+
+
+vagrant 起服务
+vagrant up
+进入主机
+vagrant ssh
+
+cd fabric-tool
+./startFabric.sh
