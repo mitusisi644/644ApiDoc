@@ -1,0 +1,59 @@
+/**
+ * Write your model definitions here
+ */
+
+namespace org.zjhl.network
+
+participant Agency identified by agencyId {
+  /*** id 自增 ID */
+  o String agencyId
+  /** 地区ID */
+  o String areaId
+  /** 国家ID */
+  o String countryId
+  /** 银行|公司名称|用户名称 */
+  o String companyName
+}
+
+concept LetterOfCreditDetails {
+
+  o String locNo
+  o String openSwift
+  o String accepttingSwift 
+  o String amount
+  o String currency
+
+}
+
+enum LocStatus {
+  /** 状态要三个 */
+  o SUBMITTED 
+  
+  o APPROVIED
+  o CONFIRMED
+  o SETTLED
+}
+
+asset LocAsset identified by assetDBId {
+  /** database id */
+  o String assetDBId
+  o LetterOfCreditDetails locDetails
+  --> Agency owner
+  o LocStatus locStatus 
+}
+
+transaction CreateLocAsset {
+  o String assetDBId
+  o LetterOfCreditDetails locDetails
+  --> Agency owner
+}
+
+transaction UpdateLocAsset {
+  --> LocAsset locAsset
+  --> Agency owner
+  o LocStatus newLocStatus
+}
+
+
+
+

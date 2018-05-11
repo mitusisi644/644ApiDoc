@@ -1,0 +1,20 @@
+query selectLocAssetByLocNum {
+  description: "Select all commodities"
+  statement:
+      SELECT org.zjhl.network.LocAsset
+      	  WHERE (locDetails.locNo ==_$locNo)
+}
+
+query selectTransactionUpdateLocAsset {
+  description: "Select all commodities based on their main exchange"
+  statement:
+      SELECT org.hyperledger.composer.system.HistorianRecord
+          WHERE (transactionType == 'UpdateLocAsset')
+}
+
+query selectLocAsset {
+  description: "Select all commodities"
+  statement:
+      SELECT org.zjhl.network.LocAsset 
+  		WHERE (assetDBId == _$assetDBId)
+}
