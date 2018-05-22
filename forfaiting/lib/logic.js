@@ -38,6 +38,15 @@ function createLocAsset(locAsset) {
         console.log(assetRegistry)        
         return assetRegistry.add(newLoc);
   })
+  .then(function () {
+    // emit the event
+    var CreateLocAssetEvent = factory.newEvent(namespace, 'CreateLocAssetEvent');
+    CreateLocAssetEvent.owner = newLoc.owner;
+    CreateLocAssetEvent.locDetails = newLoc.locDetails;
+    CreateLocAssetEvent.locStatus = newLoc.locStatus;
+    CreateLocAssetEvent.assetDBId = newLoc.assetDBId;
+    emit(CreateLocAssetEvent);
+  });
 }
 
 

@@ -48,12 +48,22 @@ transaction CreateLocAsset {
   --> Agency owner
 }
 
+event CreateLocAssetEvent {
+  o String assetDBId
+  o LetterOfCreditDetails locDetails
+  o LocStatus locStatus
+  --> Agency owner
+}
+
 transaction UpdateLocAsset {
   --> LocAsset locAsset
   --> Agency owner
   o LocStatus newLocStatus
 }
 
-
+event UpdateLocAssetEvent {
+  o LocStatus newLocStatus
+  --> Agency owner
+}
 
 
